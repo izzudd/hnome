@@ -1,9 +1,14 @@
 <script>
+  import { onDestroy, onMount } from "svelte";
   import Main from "./lib/Main.svelte";
+  import { initItemStore, saveItemStore } from "./store/DrawerItem";
+
+  onMount(initItemStore);
+  onDestroy(saveItemStore);
 </script>
 
 <div class="outer fixed top-0 left-0 w-full h-full bg-center bg-cover bg-no-repeat -z-10"></div>
-<div class="bg-nord0/40 backdrop-blur-xl min-h-screen w-full py-16">
+<div class="bg-nord0/40 backdrop-blur min-h-screen w-full py-16">
   <Main />
 </div>
 
