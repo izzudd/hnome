@@ -1,12 +1,21 @@
 <script lang="ts">
   import Icon from "@iconify/svelte";
   import { removeDrawerItem, type DrawerItem } from "../store/DrawerItem";
+  import { message, showMessageDialog } from "../store/Message";
 
   export let item: DrawerItem;
   export let inFolder = 0;
 
   const iconUrl = `https://cdn.simpleicons.org/${item.title.toLowerCase()}/f5e9f0`;
   let iconValid = true;
+
+  function deleteEntry() {
+    showMessageDialog({
+      title: 'Delete Entry',
+      message: `Entry "${item.title}" linked to "${item.link}". Are you sure want to delete it?`,
+      onConfirm: () => removeDrawerItem(item.id)
+    })
+  }
 </script>
 
 <div class="entry {inFolder ? 'bg-nord4/10' : ''} {inFolder === -1 ? 'rounded-r-xl' : ''}">
@@ -24,7 +33,7 @@
       <button>
         <Icon icon="material-symbols:edit" class="text-2xl" />
       </button>
-      <button on:click={() => removeDrawerItem(item.id)}>
+      <button on:click={deleteEntry}>
         <Icon icon="material-symbols:delete" class="text-2xl" />
       </button>
     </div>

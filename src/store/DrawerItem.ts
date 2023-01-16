@@ -13,11 +13,11 @@ const initialItems: DrawerItem[] = [
   {id: 1, title: 'Youtube', link: 'https://www.youtube.com'},
   {id: 2, title: 'Whatsapp', link: 'https://web.whatsapp.com'},
   {id: 3, title: 'Twitter', link: 'https://twitter.com'},
-  {id: 4, title: 'Instagram', link: 'https//instagram.com'},
-  {id: 5, title: 'Spotify', link: 'https//spotify.com'},
-  {id: 6, title: 'Linkedin', link: 'https//linkedin.com'},
-  {id: 7, title: 'Microsoft', link: 'https//microsoft.com'},
-  {id: 8, title: 'Invasikode', link: 'https//google.com'},
+  {id: 4, title: 'Instagram', link: 'https://instagram.com'},
+  {id: 5, title: 'Spotify', link: 'https://spotify.com'},
+  {id: 6, title: 'Linkedin', link: 'https://linkedin.com'},
+  {id: 7, title: 'Microsoft', link: 'https://microsoft.com'},
+  {id: 8, title: 'Invasikode', link: 'https://google.com'},
 ];
 
 export function initItemStore() {
