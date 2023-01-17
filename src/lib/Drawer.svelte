@@ -1,13 +1,18 @@
 <script lang="ts">
   import Icon from "@iconify/svelte";
+  import { showActionDialog } from "../store/Action";
   import { addDrawerItem, ItemStore } from "../store/DrawerItem";
+  import NewEntry from "./Dialog/NewEntry.svelte";
   import Entry from "./Entry.svelte";
 
-  function addItem() {
-    const title = prompt("title");
-    const link = prompt("url");
-    addDrawerItem({ title, link });
-  }
+  const addItem = () =>
+    showActionDialog({
+      title: "New Entry",
+      body: NewEntry,
+      onConfirm(item) {
+        addDrawerItem(item);
+      },
+    });
 </script>
 
 <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6">
