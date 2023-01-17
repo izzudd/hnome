@@ -1,29 +1,41 @@
 <script lang="ts">
   import type { DrawerItem } from "../../store/DrawerItem";
 
-  let title = '';
-  let link = '';
-  let thumb = '';
+  export let data: DrawerItem;
 
-  let linkEdited = false;
+  let title = data?.title || "";
+  let link = data?.link || "";
+  let thumb = data?.thumb || "";
+
+  let linkEdited = !!data?.link;
   function matchLinkWithTitle() {
     if (!link) linkEdited = false;
     if (linkEdited) return;
-    link = title ? `https://${title.toLowerCase()}.com` : ''
+    link = title ? `https://${title.toLowerCase()}.com` : "";
   }
   $: title, matchLinkWithTitle();
 
-  export const pushData = (): DrawerItem => ({title, link, thumb});
+  export const pushData = (): DrawerItem => ({
+    id: data?.id,
+    title,
+    link,
+    thumb,
+  });
 </script>
 
 <div>
   <div class="input">
     <span>Title</span>
-    <input type="text" placeholder="Title" bind:value={title}>
+    <input type="text" placeholder="Title" bind:value={title} />
   </div>
   <div class="input">
     <span>Link</span>
-    <input type="text" placeholder="Title" bind:value={link} on:input={() => linkEdited = true}>
+    <input
+      type="text"
+      placeholder="Title"
+      bind:value={link}
+      on:input={() => (linkEdited = true)}
+    />
   </div>
 </div>
 

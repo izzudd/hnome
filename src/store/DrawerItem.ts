@@ -41,6 +41,20 @@ export function addDrawerItem(item: DrawerItem) {
   saveItemStore();
 }
 
+export function editDrawerItem(item: DrawerItem) {
+  if (!item.id) {
+    addDrawerItem(item);
+    return;
+  }
+
+  ItemStore.update(items => {
+    const idx = items.findIndex(_item => _item.id === item.id);
+    items[idx] = item;
+    return items;
+  });
+  saveItemStore();
+}
+
 export function removeDrawerItem(id: number) {
   ItemStore.update(items => items.filter(item => item.id !== id));
   saveItemStore();

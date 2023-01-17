@@ -21,7 +21,7 @@
         >
       </div>
       <div class="p-4">
-        <svelte:component this={$dialog.body} bind:pushData={getData} />
+        <svelte:component this={$dialog.body} bind:pushData={getData} data={$dialog.data} />
       </div>
     </div>
   </div>

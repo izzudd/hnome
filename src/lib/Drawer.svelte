@@ -2,13 +2,13 @@
   import Icon from "@iconify/svelte";
   import { showActionDialog } from "../store/Action";
   import { addDrawerItem, ItemStore } from "../store/DrawerItem";
-  import NewEntry from "./Dialog/NewEntry.svelte";
+  import InsertEntry from "./Dialog/InsertEntry.svelte";
   import Entry from "./Entry.svelte";
 
   const addItem = () =>
     showActionDialog({
       title: "New Entry",
-      body: NewEntry,
+      body: InsertEntry,
       onConfirm(item) {
         addDrawerItem(item);
       },

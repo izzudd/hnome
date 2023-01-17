@@ -1,7 +1,7 @@
 import type { ComponentType, SvelteComponentTyped } from "svelte";
 import { writable } from "svelte/store";
 
-type ActionBody<T> = ComponentType<SvelteComponentTyped<{'pushData'?: () => T}>>;
+type ActionBody<T> = ComponentType<SvelteComponentTyped<{data?: T, 'pushData'?: () => T}>>;
 
 interface Dialog<T> {
   title?: string;
@@ -10,6 +10,7 @@ interface Dialog<T> {
   confirm?: string;
   onConfirm?: (data: T) => void;
   onCancel?: (data: T) => void;
+  data?: T;
 }
 
 export const enabled = writable(false);
@@ -24,6 +25,7 @@ export function showActionDialog<T>(dial: Dialog<T>) {
   const _dial: Dialog<T> = {
     title: dial.title || 'Alert',
     body: dial.body,
+    data: dial.data,
     confirm: dial.confirm || 'Save',
     cancel: dial.cancel || 'Cancel',
     onConfirm: (data) => {
