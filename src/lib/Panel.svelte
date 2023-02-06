@@ -1,5 +1,6 @@
 <script lang="ts">
   import Icon from "@iconify/svelte";
+  import { toggleDrawer, drawerShown } from "../store/Drawer";
 
   function getCurrentTime(){
     const date = new Date();
@@ -14,7 +15,7 @@
 </script>
 
 <header class="fixed top-0 left-0 w-screen bg-black z-50 text-white flex items-center justify-between py-1 px-4 font-bold">
-  <button class="hover:bg-white/20 rounded-full px-3 py-0.5">Activities</button>
+  <button class="hover:bg-white/30 rounded-full px-3 py-0.5 {$drawerShown ? 'bg-white/20' : ''}" on:click={ toggleDrawer }>Activities</button>
   <span class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-mono">{currentTime}</span>
   <button>
     <Icon icon="material-symbols:arrow-drop-down" class="text-2xl" />

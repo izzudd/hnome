@@ -1,7 +1,7 @@
 <script lang="ts">
   import Icon from "@iconify/svelte";
   import { showActionDialog } from "../store/Action";
-    import { hideDrawer, showDrawer } from "../store/Drawer";
+  import { hideDrawer, showDrawer } from "../store/Drawer";
   import {
     editDrawerItem,
     removeDrawerItem,
@@ -17,27 +17,24 @@
   let iconValid = true;
 
   const editEntry = () => {
-    showDrawer();
+    hideDrawer();
     showActionDialog({
       title: "Edit Entry",
       body: InsertEntry,
       data: item,
       onConfirm: (data) => {
         editDrawerItem(data);
-        hideDrawer;
+        showDrawer();
       },
+      onCancel: showDrawer,
     });
   }
 
   const deleteEntry = () => {
-    showDrawer();
     showMessageDialog({
       title: "Delete Entry",
       message: `Entry "${item.title}" linked to "${item.link}". Are you sure want to delete it?`,
-      onConfirm: () => {
-        removeDrawerItem(item.id);
-        hideDrawer();
-      },
+      onConfirm: () => removeDrawerItem(item.id),
     });
   }
 </script>
