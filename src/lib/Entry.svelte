@@ -1,6 +1,7 @@
 <script lang="ts">
   import Icon from "@iconify/svelte";
   import { showActionDialog } from "../store/Action";
+    import { hideDrawer, showDrawer } from "../store/Drawer";
   import {
     editDrawerItem,
     removeDrawerItem,
@@ -15,20 +16,30 @@
   const iconUrl = `https://cdn.simpleicons.org/${item.title.toLowerCase()}/f5e9f0`;
   let iconValid = true;
 
-  const editEntry = () =>
+  const editEntry = () => {
+    showDrawer();
     showActionDialog({
       title: "Edit Entry",
       body: InsertEntry,
       data: item,
-      onConfirm: (data) => editDrawerItem(data),
+      onConfirm: (data) => {
+        editDrawerItem(data);
+        hideDrawer;
+      },
     });
+  }
 
-  const deleteEntry = () =>
+  const deleteEntry = () => {
+    showDrawer();
     showMessageDialog({
       title: "Delete Entry",
       message: `Entry "${item.title}" linked to "${item.link}". Are you sure want to delete it?`,
-      onConfirm: () => removeDrawerItem(item.id),
+      onConfirm: () => {
+        removeDrawerItem(item.id);
+        hideDrawer();
+      },
     });
+  }
 </script>
 
 <div

@@ -1,5 +1,6 @@
 import type { ComponentType, SvelteComponentTyped } from "svelte";
 import { writable } from "svelte/store";
+import { hideDrawer, showDrawer } from "./Drawer";
 
 type ActionBody<T> = ComponentType<SvelteComponentTyped<{data?: T, 'pushData'?: () => T}>>;
 
